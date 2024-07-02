@@ -146,7 +146,7 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef* timHandle)
     PE13     ------> TIM1_CH3
     PE14     ------> TIM1_CH4
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_9|GPIO_PIN_11|GPIO_PIN_13|GPIO_PIN_14;
+    GPIO_InitStruct.Pin = STEER_PWM_Pin|BRAKE_PWM_Pin|ACCEL_PWM_Pin|SAFETY_PWM_TINY_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

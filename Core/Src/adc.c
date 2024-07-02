@@ -232,25 +232,25 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
     PB1     ------> ADC1_INP5
     PF11     ------> ADC1_INP2
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_4;
+    GPIO_InitStruct.Pin = TERMISTOR_Pin|WHEEL_L_ESTOP_VD_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_6;
+    GPIO_InitStruct.Pin = BRAKE_POT_Pin|WHEEL_R_ESTOP_VD_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = GPIO_PIN_1;
+    GPIO_InitStruct.Pin = CURRENT_SENS_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+    HAL_GPIO_Init(CURRENT_SENS_GPIO_Port, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = GPIO_PIN_11;
+    GPIO_InitStruct.Pin = SPARE_VD_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
+    HAL_GPIO_Init(SPARE_VD_GPIO_Port, &GPIO_InitStruct);
 
   /* USER CODE BEGIN ADC1_MspInit 1 */
 
@@ -279,25 +279,25 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
     PB1     ------> ADC2_INP5
     PF13     ------> ADC2_INP2
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_4;
+    GPIO_InitStruct.Pin = TERMISTOR_Pin|WHEEL_L_ESTOP_VD_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = GPIO_PIN_4|GPIO_PIN_6;
+    GPIO_InitStruct.Pin = BRAKE_SENS_2_Pin|WHEEL_R_ESTOP_VD_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = GPIO_PIN_1;
+    GPIO_InitStruct.Pin = CURRENT_SENS_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+    HAL_GPIO_Init(CURRENT_SENS_GPIO_Port, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = GPIO_PIN_13;
+    GPIO_InitStruct.Pin = STEER_SENS_1_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
+    HAL_GPIO_Init(STEER_SENS_1_GPIO_Port, &GPIO_InitStruct);
 
   /* USER CODE BEGIN ADC2_MspInit 1 */
 
@@ -318,18 +318,20 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
     PF5     ------> ADC3_INP4
     PF7     ------> ADC3_INP3
     PF9     ------> ADC3_INP2
+    PF10     ------> ADC3_INP6
     PC0     ------> ADC3_INP10
     PC3_C     ------> ADC3_INP1
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_3|GPIO_PIN_5|GPIO_PIN_7|GPIO_PIN_9;
+    GPIO_InitStruct.Pin = IO_BUMPER_L_Pin|IO_BUMPER_R_Pin|ACCEL_SENS_2_Pin|ACCEL_SENS_1_Pin
+                          |BRAKE_SENS_1_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = GPIO_PIN_0;
+    GPIO_InitStruct.Pin = TERMISTOR_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+    HAL_GPIO_Init(TERMISTOR_GPIO_Port, &GPIO_InitStruct);
 
     HAL_SYSCFG_AnalogSwitchConfig(SYSCFG_SWITCH_PC3, SYSCFG_SWITCH_PC3_OPEN);
 
@@ -361,13 +363,13 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
     PB1     ------> ADC1_INP5
     PF11     ------> ADC1_INP2
     */
-    HAL_GPIO_DeInit(GPIOC, GPIO_PIN_0|GPIO_PIN_4);
+    HAL_GPIO_DeInit(GPIOC, TERMISTOR_Pin|WHEEL_L_ESTOP_VD_Pin);
 
-    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_0|GPIO_PIN_6);
+    HAL_GPIO_DeInit(GPIOA, BRAKE_POT_Pin|WHEEL_R_ESTOP_VD_Pin);
 
-    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_1);
+    HAL_GPIO_DeInit(CURRENT_SENS_GPIO_Port, CURRENT_SENS_Pin);
 
-    HAL_GPIO_DeInit(GPIOF, GPIO_PIN_11);
+    HAL_GPIO_DeInit(SPARE_VD_GPIO_Port, SPARE_VD_Pin);
 
   /* USER CODE BEGIN ADC1_MspDeInit 1 */
 
@@ -392,13 +394,13 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
     PB1     ------> ADC2_INP5
     PF13     ------> ADC2_INP2
     */
-    HAL_GPIO_DeInit(GPIOC, GPIO_PIN_0|GPIO_PIN_4);
+    HAL_GPIO_DeInit(GPIOC, TERMISTOR_Pin|WHEEL_L_ESTOP_VD_Pin);
 
-    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_4|GPIO_PIN_6);
+    HAL_GPIO_DeInit(GPIOA, BRAKE_SENS_2_Pin|WHEEL_R_ESTOP_VD_Pin);
 
-    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_1);
+    HAL_GPIO_DeInit(CURRENT_SENS_GPIO_Port, CURRENT_SENS_Pin);
 
-    HAL_GPIO_DeInit(GPIOF, GPIO_PIN_13);
+    HAL_GPIO_DeInit(STEER_SENS_1_GPIO_Port, STEER_SENS_1_Pin);
 
   /* USER CODE BEGIN ADC2_MspDeInit 1 */
 
@@ -417,12 +419,14 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
     PF5     ------> ADC3_INP4
     PF7     ------> ADC3_INP3
     PF9     ------> ADC3_INP2
+    PF10     ------> ADC3_INP6
     PC0     ------> ADC3_INP10
     PC3_C     ------> ADC3_INP1
     */
-    HAL_GPIO_DeInit(GPIOF, GPIO_PIN_3|GPIO_PIN_5|GPIO_PIN_7|GPIO_PIN_9);
+    HAL_GPIO_DeInit(GPIOF, IO_BUMPER_L_Pin|IO_BUMPER_R_Pin|ACCEL_SENS_2_Pin|ACCEL_SENS_1_Pin
+                          |BRAKE_SENS_1_Pin);
 
-    HAL_GPIO_DeInit(GPIOC, GPIO_PIN_0);
+    HAL_GPIO_DeInit(TERMISTOR_GPIO_Port, TERMISTOR_Pin);
 
   /* USER CODE BEGIN ADC3_MspDeInit 1 */
 
